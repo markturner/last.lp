@@ -1,0 +1,7 @@
+--------------------------
+Last.fm albums now playing
+--------------------------
+
+This is a lightweight ruby app, using sinatra, that returns a json feed of albums I have listened to in the last week, using data from Last.fm.
+
+Feel free to steal it and do with it what you wish.
