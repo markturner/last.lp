@@ -1,7 +1,9 @@
 --------------------------
-Last.fm albums now playing
+Last.lp albums now playing
 --------------------------
 
-This is a lightweight ruby app, using sinatra, that returns a json feed of albums I have listened to in the last week, using data from Last.fm.
+This is a lightweight ruby app, using sinatra, that returns a list of albums that a given user has listened to in the last week, using data from Last.fm.
+
+It's for people who, in this modern world of short attention spans, still prefer to consume music in the form of full albums, and for whom the very track-centric approach of Last.fm is missing something.
 
 Feel free to steal it and do with it what you wish.

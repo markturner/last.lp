@@ -49,7 +49,7 @@ get '/albums' do
     end
   end
   
-  # return array as json object
+  # return array
   @albums = array
   
   haml(:albums)
@@ -86,8 +86,8 @@ get '/rss/*' do
     end
   end
   
-  # return array as json object
-  @albums = array
+  # return array in reverse order, so RSS appears in right order chronologically
+  @albums = array.reverse
   
   haml(:rss, :format => :xhtml, :layout => false)
 end
