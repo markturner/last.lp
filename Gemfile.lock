@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/markturner/rockstar.git
-  revision: 6d2dbd50dab7bc90b244b234f418893b197f1df3
+  revision: b7f90af5ff6add80e8bee3b799ae341fd2d5d039
   specs:
     rockstar (0.5.0)
       activesupport (>= 1.4.2)
@@ -18,9 +18,9 @@ GEM
   remote: http://rubygems.org/
   specs:
     activesupport (3.0.6)
+    haml (3.0.25)
     hpricot (0.8.4)
     i18n (0.5.0)
-    json (1.5.1)
     rack (1.2.2)
     tilt (1.2.2)
 
@@ -29,7 +29,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler
+  haml
   i18n
-  json
   rockstar!
   sinatra!

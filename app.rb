@@ -22,16 +22,18 @@ end
 get '/albums' do
   headers['Cache-Control'] = 'public, max-age=172800' # Cache for two days
   
+  @user = params[:user]
+  
   begin
-    @user = Rockstar::User.new(params[:user])
-    @rss = "http://lastlp.heroku.com/rss/#{params[:user]}"
+    user = Rockstar::User.new(@user)
+    @rss = "http://lastlp.heroku.com/rss/#{@user}"
   rescue
     redirect to '/?user=error'  # in case the ID is not recognised
   end
   
   # get albums
   array = []
-  @user.weekly_album_chart.each do |a|
+  user.weekly_album_chart.each do |a|
     # write load_info result to local variable to prevent repeated api calls
     info = a.load_info
     
@@ -51,23 +53,24 @@ get '/albums' do
   # return array as json object
   @albums = array
   
-  haml(:user)
+  haml(:albums)
 end
 
 get '/rss/*' do
   content_type 'application/rss+xml', :charset => 'utf-8'
-  headers['Cache-Control'] = 'public, max-age=21600' # Cache for six hours
+  headers['Cache-Control'] = 'public, max-age=172800' # Cache for two days
+  
+  @user = params["splat"].first
   
   begin
-    @user = Rockstar::User.new(params["splat"].first)
-    @rss = "http://lastlp.heroku.com/rss/#{params["splat"].first}"
+    user = Rockstar::User.new(@user)
   rescue
     redirect to '/?user=error'  # in case the ID is not recognised
   end
   
   # get albums
   array = []
-  @user.weekly_album_chart.each do |a|
+  user.weekly_album_chart[0..9].each do |a|
     # write load_info result to local variable to prevent repeated api calls
     info = a.load_info
     
@@ -89,7 +92,6 @@ get '/rss/*' do
   
   haml(:rss, :format => :xhtml, :layout => false)
 end
-
 
 get '/style.css' do
   sass :style
