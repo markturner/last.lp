@@ -1,20 +1,24 @@
-- if @error
-  %p#error Couldn't recognise your username! Are you sure it's correct?
+%section#intro
+  - if @error
+    %p#error Couldn't recognise your username! Are you sure it's correct?
 
-%p This website will generate a list of albums you have listened to lately, based on your Last.fm listening data.
-%h2 Instructions for use
-%p Enter your Last.fm username into the box below and hit 'generate':
+  %p This website will generate a list of albums you have listened to lately, based on your Last.fm listening data.
+  %h2 Instructions for use
+  %p Enter your Last.fm username into the box below and hit 'generate':
+
 %form{:method => "get", :action => "/albums"}
   %input{:type => "text", :name => "user"}
   %br
   %input{:type => "submit", :value => "Generate", :id => "submit"}
-%h2 What's the point of this?
-%p It's for people who, in this modern world of short attention spans, still prefer to consume music in the form of full albums, and for whom the very track-centric approach of Last.fm is missing something.
-%h2 Contact me
-%p If you have any complaints, suggestions, offers of work or marriage proposals, please get in touch.
-%p 
-  Email me: 
-  %a{:href=>"mailto:markjturner@gmail.com"} markjturner@gmail.com
-  or tweet me:
-  %a{:href=>"http://twitter.com/markturner"} @markturner
-%p Thanks for visiting, I hope you found this site useful :)
+
+%section#outro
+  %h2 What's the point of this?
+  %p It's for people who, in this modern world of short attention spans, still prefer to consume music in the form of full albums, and for whom the very track-centric approach of Last.fm is failing to properly convey their listening habits.
+  %h2 Contact me
+  %p If you have any complaints, suggestions, offers of work or marriage proposals, please get in touch.
+  %p 
+    Email me: 
+    %a{:href=>"mailto:markjturner@gmail.com"} markjturner@gmail.com
+    or tweet me:
+    %a{:href=>"http://twitter.com/markturner"} @markturner
+  %p Thanks for visiting, I hope you found this site useful :)
