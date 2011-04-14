@@ -32,7 +32,7 @@ get '/albums' do
   
   # get albums
   array = []
-  user.weekly_album_chart[0..9].each do |a|
+  user.weekly_album_chart[0..5].each do |a|
     # write load_info result to local variable to prevent repeated api calls
     info = a.load_info
     
@@ -72,7 +72,7 @@ get '/rss/*' do
   
   # get albums
   array = []
-  user.weekly_album_chart[0..9].each do |a|
+  user.weekly_album_chart[0..5].each do |a|
     # write load_info result to local variable to prevent repeated api calls
     info = a.load_info
     
