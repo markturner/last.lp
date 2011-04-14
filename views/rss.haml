@@ -1,0 +1,23 @@
+!!! XML
+%rss{:version => "2.0", "xmlns:atom" => "http://www.w3.org/2005/Atom"}
+  %channel
+    %title== #{@user}'s albums
+    %link== http://lastlp.heroku.com/user/#{@user}
+    %description== Recent albums listened to by #{@user}
+    <atom:link href="http://lastlp.heroku.com/" rel="self" type="application/rss+xml" />
+    - @albums.each do |album|
+      %item
+        %title
+          <![CDATA[
+          == #{album[:artist]} - #{album[:title]}
+          ]]>
+        %link= album[:url]
+        %description
+          <![CDATA[
+          %img{:src => album[:image_url]}
+          %p
+            == #{album[:artist]} - #{album[:title]}
+            %br
+            %a{:href => album[:url]}View Album on Last.fm
+          ]]>
+        %guid= album[:url]

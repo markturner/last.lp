@@ -1,0 +1,37 @@
+!!!
+%html
+  %head
+    %title Last.lp
+    
+    %meta{:charset => 'utf-8'}
+    %link{:href => 'style.css', :media => 'screen, projection', :rel => "stylesheet", :type => "text/css"}
+    
+    %script{:type => "text/javascript"}
+      function recordOutboundLink(link, category, action) {_gat._getTrackerByName()._trackEvent(category, action); setTimeout('document.location = "' + link.href + '"', 100);}
+      
+    %meta{:name => "google-site-verification", :content => "OG88cAjlXJdD3MKWkYiFTeTm0p7pKtH2tRACO6WmkCc"}
+    
+  %body
+    #container
+      %header
+        %hgroup
+          %h1
+            %a{:href => "http://lastlp.heroku.com"}last.lp
+    
+      %section
+        = yield
+      
+    %footer
+      %p
+        Website by
+        %a{:href => "http://markturner.info", :onClick => "recordOutboundLink(this, 'Outbound Links', 'markturner.info');return false;"}Mark Turner
+      %p#github
+        Source code on
+        %a{:href => "http://github.com/markturner/lastlp", :onClick => "recordOutboundLink(this, 'Outbound Links', 'github.com');return false;"}Github
+        
+      / %script{:type =>"text/javascript"}
+      /   var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      /   document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js'       type='text/javascript'%3E%3C/script%3E"));
+      / %script{ :type => "text/javascript" }
+      /   var pageTracker = _gat._getTracker("UA-670721-7");
+      /   pageTracker._trackPageview();
