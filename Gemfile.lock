@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/markturner/rockstar.git
-  revision: b7f90af5ff6add80e8bee3b799ae341fd2d5d039
+  revision: cff12c53b558eddfcef2ce83f3300841428242fb
   specs:
     rockstar (0.5.0)
       activesupport (>= 1.4.2)

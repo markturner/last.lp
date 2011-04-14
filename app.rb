@@ -19,7 +19,7 @@ end
 
   
 get '/albums' do
-  headers['Cache-Control'] = 'public, max-age=172800' # Cache for two days
+  headers['Cache-Control'] = 'public, max-age=86400' # Cache for one day
   
   @user = params[:user]
   
@@ -32,7 +32,8 @@ get '/albums' do
   
   # get albums
   array = []
-  user.weekly_album_chart[0..5].each do |a|
+  user.top_albums('7day')[0..5].each do |a|
+        
     # write load_info result to local variable to prevent repeated api calls
     info = a.load_info
     
@@ -45,8 +46,8 @@ get '/albums' do
           :artist => a.artist,
           :track_count => info[:track_count],
           :play_count => a.playcount,
-          :url => info[:url],
-          :image_url => info[:large_image_url]
+          :url => a.url,
+          :image_url => a.images["extralarge"]
         }
       end
     end
@@ -60,7 +61,7 @@ end
 
 get '/rss/*' do
   content_type 'application/rss+xml', :charset => 'utf-8'
-  headers['Cache-Control'] = 'public, max-age=172800' # Cache for two days
+  headers['Cache-Control'] = 'public, max-age=86400' # Cache for one day
   
   @user = params["splat"].first
   
@@ -72,20 +73,22 @@ get '/rss/*' do
   
   # get albums
   array = []
-  user.weekly_album_chart[0..5].each do |a|
+  user.top_albums('7day')[0..5].each do |a|
     # write load_info result to local variable to prevent repeated api calls
     info = a.load_info
     
     # pushes played albums to an array
-    if a.playcount.to_i >= info[:track_count] - 3 && a.playcount.to_i >=3
-      array << {
-        :title => a.name,
-        :artist => a.artist,
-        :track_count => info[:track_count],
-        :play_count => a.playcount,
-        :url => info[:url],
-        :image_url => info[:large_image_url]
-      }
+    if info[:track_count] > 0 or a.playcount.to_i >= 7
+      if a.playcount.to_i >= info[:track_count] - 3 and a.playcount.to_i > 3
+        array << {
+          :title => a.name,
+          :artist => a.artist,
+          :track_count => info[:track_count],
+          :play_count => a.playcount,
+          :url => info[:url],
+          :image_url => a.images["extralarge"]
+        }
+      end
     end
   end
   
