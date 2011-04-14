@@ -4,7 +4,6 @@ Bundler.setup
 
 require 'sinatra'
 require 'rockstar'
-require 'json'
 
 # initialise api key
 Rockstar.lastfm = YAML.load_file('lastfm.yml')
