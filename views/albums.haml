@@ -1,5 +1,6 @@
 %section#intro
-  %p== Below is a list of albums #{@user} has listened to in full in the last week.
+  %p== Below is a list of albums #{@user} has (probably*) listened to in full in the last week.
+  %p * I say probably because all I'm actually doing is counting the number of tracks played. You might have played the same track 25 times, and that would mess this up a bit.
   %ul
     %li
       %a{:href => "http://www.last.fm/user#{@user}"}== #{@user}'s Last.fm profile
@@ -7,15 +8,18 @@
       %a{:href => @rss}RSS feed
 
 %section#albums
-  - @albums.each do |album|
-    %article.album
-      %img{:src => album[:image_url], :width => '348', :height => '348', :alt => "#{album[:title]} cover artwork", :class => 'album_art'}
-      %h2
-        = album[:artist]
-        %br
-        = album[:title]
-      %ul
-        %li== Tracks: #{album[:track_count]}
-        %li== Tracks played: #{album[:play_count]}
-        %li
-          %a{:href => album[:url]}View album page on Last.fm
+  - if @albums.count > 0
+    - @albums.each do |album|
+      %article.album
+        %img{:src => album[:image_url], :width => '348', :height => '348', :alt => "#{album[:title]} cover artwork", :class => 'album_art'}
+        %h2
+          = album[:artist]
+          %br
+          = album[:title]
+        %ul
+          %li== Tracks: #{album[:track_count]}
+          %li== Tracks played: #{album[:play_count]}
+          %li
+            %a{:href => album[:url]}View album page on Last.fm
+  - else
+    %p== #{@user} didn't listen to any albums! More of the 'shuffle' type I guess.
