@@ -39,7 +39,7 @@ get '/albums' do
     # pushes played albums to an array if I deem it to have been probably played through
     # this alogrithm is very basic and could probably use some improvement!
     if info[:track_count] > 0 or a.playcount.to_i >= 7
-      if a.playcount.to_i >= info[:track_count] - 3
+      if a.playcount.to_i >= info[:track_count] - 3 and a.playcount.to_i > 3
         array << {
           :title => a.name,
           :artist => a.artist,
