@@ -2,7 +2,7 @@
 %rss{:version => "2.0", "xmlns:atom" => "http://www.w3.org/2005/Atom"}
   %channel
     %title== #{@user}'s albums
-    %link== http://lastlp.heroku.com/user/#{@user}
+    %link== http://lastlp.heroku.com/albums?user=#{@user}
     %description== Recent albums listened to by #{@user}
     <atom:link href="http://lastlp.heroku.com/" rel="self" type="application/rss+xml" />
     - @albums.each do |album|
