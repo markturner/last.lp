@@ -92,8 +92,8 @@ get '/rss/*' do
     end
   end
   
-  # return array in reverse order, so RSS appears in right order chronologically
-  @albums = array.reverse
+  # return array
+  @albums = array
   
   haml(:rss, :format => :xhtml, :layout => false)
 end
